@@ -46,6 +46,7 @@ top:4em;
 font-size:.3em;
 width:100%;
 -webkit-transition: all 1s ease-in-out;
+-moz-transition: all 1s ease-in-out;
 opacity:1;
 color:black;
 text-shadow:none;
@@ -58,15 +59,18 @@ bottom:3.5em;
 
 .hide {
 -webkit-transform: translate(0px, -2em);
+-moz-transform: translate(0px, -2em);
 opacity:0;
 }
 
 .above.hide {
 -webkit-transform: translate(0px, 2em);
+-moz-transform: translate(0px, 2em);
 }
 
 .cookie {
 -webkit-transform: none;
+-moz-transform: none;
 opacity:1;
 }
 
@@ -128,7 +132,12 @@ ctx.fillStyle = "#FFFFFF";
 ctx.fill();
 }
 });
-$('.hide').removeClass('hide');
+if ($.cookie('skip_transitions')) {
+	$('.hide').addClass('cookie');
+} else {
+	$.cookie('skip_transitions', '1');
+	$('.hide').removeClass('hide');
+}
 });
 </script>
 </body>
