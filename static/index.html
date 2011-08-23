@@ -1,8 +1,135 @@
 <html>
 <head>
 <title>tpetr.net</title>
+<link href="reset.css" rel="stylesheet" type="text/css" />
+<style>
+body {
+color:white;
+background:url(rain.jpg);
+}
+#nametag {
+font-family:georgia;
+font-weight:100;
+position:absolute;
+top:50%;
+left:50%;
+height:8em;
+width:900px;
+margin-top:-8em;
+margin-left:-450px;
+background:rgba(64,64,64,.5);
+border-radius: 10px;
+text-align:center;
+padding:5em 0em;
+}
+#nametag h1 {
+position:relative;
+display:inline;
+}
+#nametag .container {
+position:relative;
+display:inline;
+font-size:6em;
+text-shadow: 2px 2px #000;
+height:209px;
+}
+
+#nametag .container a {
+color:white;
+text-decoration:none;
+}
+
+.bracket {
+position:absolute;
+left:0px;
+top:4em;
+font-size:.3em;
+width:100%;
+-webkit-transition: all 1s ease-in-out;
+opacity:1;
+color:black;
+text-shadow:none;
+}
+
+.above {
+top:auto;
+bottom:3.5em;
+}
+
+.hide {
+-webkit-transform: translate(0px, -2em);
+opacity:0;
+}
+
+.above.hide {
+-webkit-transform: translate(0px, 2em);
+}
+
+.cookie {
+-webkit-transform: none;
+opacity:1;
+}
+
+.curly {
+width:100%;
+height:50px;
+}
+
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="jquery.cookie.js"></script>
 </head>
 <body>
-Woah woah, coming soon
+<div id="nametag">
+<div class="container">
+<h1>tom.petr<span class="bracket hide">
+<canvas class="curly"></canvas><br>
+<a href="http://linkedin.com/in/tpetr">linkedin</a>
+</span></h1>
+<h1>@tpetr<span class="bracket hide">
+<canvas class="curly"></canvas><br>
+<a href="http://twitter.com/tpetr">twitter</a>
+</span></h1>
+<h1>.net</h1>
+<span class="bracket above hide"><a href="mailto:tom.petr@tpetr.net">email</a><br>
+<canvas class="curly above" />
+</span>
+</div>
+</div>
+<script>
+$(function () { 
+$('.curly').each(function (i, element) {
+console.log(element)
+var ctx = element.getContext('2d');
+var h = element.clientHeight;
+var w = element.clientWidth;
+element.width = w;
+element.height = h;
+console.log("h=" + h + ", w=" + w)
+if ($(element).hasClass('above')) {
+ctx.moveTo(w/2, 0);
+ctx.bezierCurveTo(w/2, h, 0, 0, 0, h)
+ctx.bezierCurveTo(0, -10, w/2, h-10, w/2, 0);
+ctx.fillStyle = "#FFFFFF";
+ctx.fill();
+ctx.bezierCurveTo(w/2, h, w, 0, w, h)
+ctx.bezierCurveTo(w, -10, w/2, h-10, w/2, 0);
+ctx.fillStyle = "#FFFFFF";
+ctx.fill();
+} else {
+ctx.moveTo(w/2, h);
+ctx.bezierCurveTo(w/2, 0, 0, h, 0, 0)
+ctx.bezierCurveTo(0, h-10, w/2, -10, w/2, h);
+ctx.fillStyle = "#FFFFFF";
+ctx.fill();
+ctx.bezierCurveTo(w/2, 0, w, h, w, 0)
+ctx.bezierCurveTo(w, h-10, w/2, -10, w/2, h);
+ctx.fillStyle = "#FFFFFF";
+ctx.fill();
+}
+});
+$('.hide').removeClass('hide');
+});
+</script>
 </body>
 </html>
