@@ -28,7 +28,7 @@ display:inline;
 }
 #nametag .container {
 position:relative;
-display:inline;
+margin:0px 32px;
 font-size:6em;
 text-shadow: 2px 2px #000;
 height:209px;
@@ -53,19 +53,18 @@ text-shadow:none;
 }
 
 .above {
-top:auto;
-bottom:3.5em;
+top:-2.5em;
 }
 
 .hide {
--webkit-transform: translate(0px, -2em);
--moz-transform: translate(0px, -2em);
-opacity:0;
+-webkit-transform: translate(0px, -20px);
+-moz-transform: translate(0px, -20px);
+opacity:.3;
 }
 
 .above.hide {
--webkit-transform: translate(0px, 2em);
--moz-transform: translate(0px, 2em);
+-webkit-transform: translate(0px, 20px);
+-moz-transform: translate(0px, 20px);
 }
 
 .cookie {
@@ -86,18 +85,7 @@ height:50px;
 <body>
 <div id="nametag">
 <div class="container">
-<h1>tom.petr<span class="bracket hide">
-<canvas class="curly"></canvas><br>
-<a href="http://linkedin.com/in/tpetr">linkedin</a>
-</span></h1>
-<h1>@tpetr<span class="bracket hide">
-<canvas class="curly"></canvas><br>
-<a href="http://twitter.com/tpetr">twitter</a>
-</span></h1>
-<h1>.net</h1>
-<span class="bracket above hide"><a href="mailto:tom.petr@tpetr.net">email</a><br>
-<canvas class="curly above" />
-</span>
+<h1>tom.petr<span class="bracket hide"><canvas class="curly"></canvas><br><a href="http://linkedin.com/in/tpetr">linkedin</a></span></h1><h1>@tpetr<span class="bracket hide"><canvas class="curly"></canvas><br><a href="http://twitter.com/tpetr">twitter</a></span></h1><h1>.net</h1><span class="bracket above hide"><a href="mailto:tom.petr@tpetr.net">email</a><br><canvas class="curly above" /></span>
 </div>
 </div>
 <script>
@@ -113,31 +101,31 @@ console.log("h=" + h + ", w=" + w)
 if ($(element).hasClass('above')) {
 ctx.moveTo(w/2, 0);
 ctx.bezierCurveTo(w/2, h, 0, 0, 0, h)
-ctx.bezierCurveTo(0, -10, w/2, h-10, w/2, 0);
+ctx.bezierCurveTo(0, -8, w/2, h-8, w/2, 0);
 ctx.fillStyle = "#FFFFFF";
 ctx.fill();
 ctx.bezierCurveTo(w/2, h, w, 0, w, h)
-ctx.bezierCurveTo(w, -10, w/2, h-10, w/2, 0);
+ctx.bezierCurveTo(w, -8, w/2, h-8, w/2, 0);
 ctx.fillStyle = "#FFFFFF";
 ctx.fill();
 } else {
 ctx.moveTo(w/2, h);
 ctx.bezierCurveTo(w/2, 0, 0, h, 0, 0)
-ctx.bezierCurveTo(0, h-10, w/2, -10, w/2, h);
+ctx.bezierCurveTo(0, h-8, w/2, -8, w/2, h);
 ctx.fillStyle = "#FFFFFF";
 ctx.fill();
 ctx.bezierCurveTo(w/2, 0, w, h, w, 0)
-ctx.bezierCurveTo(w, h-10, w/2, -10, w/2, h);
+ctx.bezierCurveTo(w, h-8, w/2, -8, w/2, h);
 ctx.fillStyle = "#FFFFFF";
 ctx.fill();
 }
 });
-if ($.cookie('skip_transitions')) {
-	$('.hide').addClass('cookie');
-} else {
-	$.cookie('skip_transitions', '1');
+//if ($.cookie('skip_transitions')) {
+//	$('.hide').addClass('cookie');
+//} else {
+//	$.cookie('skip_transitions', '1');
 	$('.hide').removeClass('hide');
-}
+//}
 });
 </script>
 </body>
